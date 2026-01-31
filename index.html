@@ -259,25 +259,53 @@ button:hover{
         <p>Happy Valentine’s Day 💌</p>
     </div>
 </div>
+    
 
 <div class="music" onclick="toggleMusic()">🎵</div>
 
-<!-- YouTube embed for Lana Del Rey - Say Yes to Heaven (sped up / official audio) -->
-<iframe id="ytplayer"
-    style="display:none; position:fixed; bottom:60px; right:20px; width:300px; height:170px; border-radius:10px; border:none;"
-    src="https://www.youtube.com/embed/OYIIIQTuGPk?autoplay=0&loop=1&playlist=OYIIIQTuGPk"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-</iframe>
+<div id="player" style="display:none;"></div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+let player;
 let musicOn = false;
+
+// Create YouTube player
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',      // hide video
+        width: '0',
+        videoId: 'OYIIIQTuGPk', // Lana Del Rey - Say Yes to Heaven
+        playerVars: {
+            'autoplay': 0,
+            'loop': 1,
+            'playlist': 'OYIIIQTuGPk',
+            'controls': 0,
+            'rel': 0,
+            'modestbranding': 1
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event){
+    // ready to play
+}
+
 function toggleMusic(){
-    const player = document.getElementById("ytplayer");
-    musicOn = !musicOn;
-    player.style.display = musicOn ? "block" : "none";
+    if(!player) return;
+    if(!musicOn){
+        player.playVideo();
+        musicOn = true;
+    } else {
+        player.pauseVideo();
+        musicOn = false;
+    }
 }
 </script>
+
  
 <script>
 let current=1;
@@ -329,5 +357,6 @@ function toggleMusic(){
 
 </body>
 </html>
+
 
 
