@@ -128,7 +128,7 @@ button:hover{
         <h1>Hi Aradhya ❤️</h1>
         <p>
             This website is officially dedicated to<br>
-            my favorite human.
+            My Favorite Human.
         </p>
         <button onclick="next()">Enter 😌</button>
     </div>
@@ -139,11 +139,11 @@ button:hover{
     <div class="card">
         <h1>Hey <span id="nick"></span> 💕</h1>
         <p>
-            Welcome to a place where<br>
-            you are loved, admired,<br>
-            and slightly spoiled.
+            Welcome To a Place Where<br>
+            You are loved, Admired,<br>
+            and Slightly Spoiled.
         </p>
-        <button onclick="next()">Continue 💗</button>
+        <button onclick="next()">Continue 🥹</button>
     </div>
 </div>
 
@@ -152,10 +152,10 @@ button:hover{
     <div class="card">
         <h1>Quick Reminder 😌</h1>
         <p>
-            You are my Aruu,<br>
-            my Buttercup,<br>
-            my Rasmalai,<br>
-            and my forever favorite.
+            Tu sirf meri Aruuuu hai,<br>
+            And I am keeping you forever,<br>
+            No matter how hard the situations are,<br>
+            Cause I love you so so so so muchhh.
         </p>
         <button onclick="next()">Aww okay 🥹</button>
     </div>
@@ -166,10 +166,10 @@ button:hover{
     <div class="card">
         <h1>Fake Chat 📱</h1>
         <div class="chat">
-            <p>Sweetu: I miss you 🥺</p>
-            <p class="me">Me: Missing you back x100</p>
+            <p>Gudda: I miss you 🥺</p>
+            <p class="Milan">Milan: I miss you more 🥹</p>
             <p>Kuchu Puchu: Come fast 😤</p>
-            <p class="me">Me: On my way to your heart ❤️</p>
+            <p class="Milan">Milan: On my way to your heart ❤️</p>
         </div>
         <button onclick="next()">Cute but ok 🙄</button>
     </div>
@@ -190,11 +190,11 @@ button:hover{
 <!-- 6 -->
 <div class="section" id="s6">
     <div class="card">
-        <h1>Choose Our Date 🍿</h1>
+        <h1>Choose Our Date (Future) 🍿</h1>
         <div class="options">
             <button onclick="next()">Movie + Snacks</button>
-            <button onclick="next()">Late-night Drive</button>
-            <button onclick="next()">Just us talking</button>
+            <button onclick="next()">Late-night nightouts in Bangalore</button>
+            <button onclick="next()">Just us doing our stuff in the bedroom 🤤</button>
             <button onclick="next()">All of them 😏</button>
         </div>
     </div>
@@ -230,7 +230,7 @@ button:hover{
         <h1>Secret 🤫</h1>
         <p>
             Even on bad days,<br>
-            my favorite thought is still you.
+            My favorite thought is still you.
         </p>
         <button onclick="next()">Final Question 💘</button>
     </div>
@@ -249,14 +249,14 @@ button:hover{
 <!-- 11 -->
 <div class="section" id="s11">
     <div class="card">
-        <h1>YAY 🥹❤️</h1>
+        <h1>YAYYYYYYYYY 🥹❤️</h1>
         <p>
             Thank you for choosing me.<br>
             I promise to keep loving you,<br>
             teasing you,<br>
-            and calling you cute names forever.
+            and supporting you in your every decision.
         </p>
-        <p>Happy Valentine’s Day 💕</p>
+        <p>Happy Valentine’s Day 💌</p>
     </div>
 </div>
 
@@ -285,17 +285,17 @@ function move(btn){
     btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 }
 
-// timer
-const start=new Date("2024-01-01");
-setInterval(()=>{
-    const now=new Date();
-    const diff=now-start;
-    const d=Math.floor(diff/86400000);
-    const h=Math.floor(diff/3600000)%24;
-    const m=Math.floor(diff/60000)%60;
-    document.getElementById("timer").innerText=`${d} days ${h} hrs ${m} mins`;
-},1000);
-
+// timer: since Aug 11, 2025
+const start = new Date("2025-08-11T00:00:00");
+setInterval(() => {
+    const now = new Date();
+    const diff = now - start;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    document.getElementById("timer").innerText = `${d} days ${h} hrs ${m} mins`;
+}, 1000);
+    
 // hearts
 setInterval(()=>{
     const h=document.createElement("div");
@@ -315,3 +315,4 @@ function toggleMusic(){
 
 </body>
 </html>
+
