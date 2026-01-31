@@ -264,29 +264,28 @@ button:hover{
 <div class="music" id="musicBtn">🎵</div>
 
 <audio id="song" loop>
-    <source src="https://raw.githubusercontent.com/YOUR‑USERNAME/valentines/main/say-yes-to-heaven.mp3" type="audio/mpeg">
-    
+  <source src="https://raw.githubusercontent.com/parvv-10/valentines/main/say-yes-to-heaven.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-const musicBtn = document.getElementById('musicBtn');
-const song = document.getElementById('song');
+    <script>
+const musicBtn = document.getElementById("musicBtn");
+const song = document.getElementById("song");
 
-let playing = false;
+musicBtn.onclick = () => {
+  if (song.paused) {
+    song.play();
+    musicBtn.innerText = "🔊";
+  } else {
+    song.pause();
+    musicBtn.innerText = "🎵";
+  }
+};
 
-musicBtn.addEventListener('click', () => {
-    if (!playing) {
-        song.play().catch(err => {
-            alert("Tap again to allow music 😊");
-        });
-        playing = true;
-        musicBtn.innerText = "🔊";
-    } else {
-        song.pause();
-        playing = false;
-        musicBtn.innerText = "🎵";
-    }
-});
+// autoplay after first tap anywhere
+document.body.addEventListener("click", () => {
+  song.play();
+}, { once: true });
+
 </script>
 
 
@@ -341,6 +340,7 @@ function toggleMusic(){
 
 </body>
 </html>
+
 
 
 
