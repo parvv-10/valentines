@@ -125,7 +125,7 @@ button:hover{
 <!-- 1 -->
 <div class="section active" id="s1">
     <div class="card">
-        <h1>Hi Aradhya ❤️</h1>
+        <h1>Hieeeee Aradhya ❤️</h1>
         <p>
             This website is officially dedicated to<br>
             My Favorite Human.
@@ -152,10 +152,10 @@ button:hover{
     <div class="card">
         <h1>Quick Reminder 😌</h1>
         <p>
-            Tu sirf meri Aruuuu hai,<br>
+            You are Mine,<br>
             And I am keeping you forever,<br>
-            No matter how hard the situations are,<br>
-            Cause I love you so so so so muchhh.
+            No matter how hard the situations are.
+            
         </p>
         <button onclick="next()">Aww okay 🥹</button>
     </div>
@@ -261,10 +261,24 @@ button:hover{
 </div>
 
 <div class="music" onclick="toggleMusic()">🎵</div>
-<audio id="song" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-</audio>
 
+<!-- YouTube embed for Lana Del Rey - Say Yes to Heaven (sped up / official audio) -->
+<iframe id="ytplayer"
+    style="display:none; position:fixed; bottom:60px; right:20px; width:300px; height:170px; border-radius:10px; border:none;"
+    src="https://www.youtube.com/embed/OYIIIQTuGPk?autoplay=0&loop=1&playlist=OYIIIQTuGPk"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+</iframe>
+
+<script>
+let musicOn = false;
+function toggleMusic(){
+    const player = document.getElementById("ytplayer");
+    musicOn = !musicOn;
+    player.style.display = musicOn ? "block" : "none";
+}
+</script>
+ 
 <script>
 let current=1;
 const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
@@ -315,4 +329,5 @@ function toggleMusic(){
 
 </body>
 </html>
+
 
