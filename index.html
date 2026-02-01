@@ -7,342 +7,411 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#ff5f8a,#ff9a9e);
-    color:white;
-    overflow-x:hidden;
+background:linear-gradient(135deg,#ff5f8a,#ff9a9e);
+color:white;
+overflow-x:hidden;
 }
 
 .section{
-    min-height:100vh;
-    display:none;
-    padding:50px 20px;
-    text-align:center;
+min-height:100vh;
+display:none;
+padding:50px 20px;
+text-align:center;
 }
 
 .section.active{
-    display:block;
-    animation:fade 1.2s ease;
+display:block;
+animation:fade 1.2s ease;
 }
 
 .card{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    padding:30px;
-    border-radius:20px;
-    max-width:480px;
-    margin:auto;
-    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:20px;
+max-width:480px;
+margin:auto;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
-h1{
-    font-size:2.2em;
-    margin-bottom:15px;
-}
-
-p{
-    font-size:1.1em;
-    line-height:1.6;
-}
+h1{font-size:2.2em;margin-bottom:15px;}
+p{font-size:1.1em;line-height:1.6;}
 
 button{
-    margin-top:18px;
-    padding:12px 26px;
-    border-radius:30px;
-    border:none;
-    background:white;
-    color:#ff4d6d;
-    font-size:1em;
-    cursor:pointer;
-    transition:.3s;
+margin-top:18px;
+padding:12px 26px;
+border-radius:30px;
+border:none;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+transition:.3s;
 }
 
-button:hover{
-    transform:scale(1.1);
-}
+button:hover{transform:scale(1.1);}
 
 .options button{
-    width:100%;
-    margin:8px 0;
+width:100%;
+margin:8px 0;
 }
 
-.chat{
-    text-align:left;
-    font-size:.95em;
-}
-
+.chat{text-align:left;}
 .chat p{
-    background:rgba(255,255,255,.2);
-    padding:10px;
-    border-radius:12px;
-    margin:8px 0;
+background:rgba(255,255,255,.2);
+padding:10px;
+border-radius:12px;
+margin:8px 0;
 }
-
-.me{text-align:right;}
 
 .heart{
-    position:fixed;
-    font-size:20px;
-    animation:float 6s linear infinite;
+position:fixed;
+font-size:20px;
+animation:float 6s linear infinite;
 }
+
+/* QUOTE + COLLAGE */
+
+.love-quote{
+font-size:1.4em;
+margin-bottom:25px;
+font-style:italic;
+}
+
+.heart-collage{
+display:grid;
+grid-template-columns:repeat(5,70px);
+gap:8px;
+justify-content:center;
+}
+
+.heart-collage img{
+width:70px;
+height:70px;
+object-fit:cover;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.hide{visibility:hidden;}
+
+/* MUSIC */
 
 .music{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:white;
-    color:#ff4d6d;
-    border-radius:50%;
-    width:50px;
-    height:50px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    font-size:20px;
+position:fixed;
+bottom:20px;
+right:20px;
+background:white;
+color:#ff4d6d;
+border-radius:50%;
+width:50px;
+height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:20px;
 }
 
+/* CONFETTI BURST */
+
+.burst{
+position:fixed;
+pointer-events:none;
+z-index:1000;
+}
+
+.burst span{
+position:absolute;
+font-size:18px;
+animation:burstFly 2.5s ease-out forwards;
+opacity:0.9;
+}
+
+@keyframes burstFly{
+0%{transform:translate(0,0) scale(1);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) scale(0.6);opacity:0;}
+}
+
+/* ANIMATIONS */
+
 @keyframes float{
-    from{transform:translateY(100vh);opacity:1;}
-    to{transform:translateY(-10vh);opacity:0;}
+from{transform:translateY(100vh);opacity:1;}
+to{transform:translateY(-10vh);opacity:0;}
 }
 
 @keyframes fade{
-    from{opacity:0;transform:scale(.9);}
-    to{opacity:1;transform:scale(1);}
+from{opacity:0;transform:scale(.9);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.card{padding:22px;max-width:95%;}
+h1{font-size:1.8em;}
+p{font-size:1em;}
+
+.love-quote{font-size:1.15em;}
+
+.heart-collage{
+grid-template-columns:repeat(5,55px);
+gap:6px;
+}
+
+.heart-collage img{
+width:55px;
+height:55px;
+}
+
+.music{
+width:45px;
+height:45px;
+}
+}
+
+@media(max-width:420px){
+
+h1{font-size:1.6em;}
+.love-quote{font-size:1.05em;}
+
+.heart-collage{
+grid-template-columns:repeat(5,48px);
+}
+
+.heart-collage img{
+width:48px;
+height:48px;
+}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 1 -->
 <div class="section active" id="s1">
-    <div class="card">
-        <h1>Hieeeee Aradhya ❤️</h1>
-        <p>
-            This website is officially dedicated to<br>
-            My Favorite Human.
-        </p>
-        <button onclick="next()">Enter 😌</button>
-    </div>
+<div class="card">
+<h1>Hieeeee Aradhya ❤️</h1>
+<p>This website is officially dedicated to<br>My Favorite Human.</p>
+<button onclick="next()">Enter 😌</button>
+</div>
 </div>
 
-<!-- 2 -->
 <div class="section" id="s2">
-    <div class="card">
-        <h1>Hey <span id="nick"></span> 💕</h1>
-        <p>
-            Welcome To a Place Where<br>
-            You are loved, Admired,<br>
-            and Slightly Spoiled.
-        </p>
-        <button onclick="next()">Continue 🥹</button>
-    </div>
+<div class="card">
+<h1>Hey <span id="nick"></span> 💕</h1>
+<p>Welcome to your special place ❤️</p>
+<button onclick="next()">Continue 🥹</button>
+</div>
 </div>
 
-<!-- 3 -->
 <div class="section" id="s3">
-    <div class="card">
-        <h1>Quick Reminder 😌</h1>
-        <p>
-            You are Mine,<br>
-            And I am keeping you forever,<br>
-            No matter how hard the situations are.
-            
-        </p>
-        <button onclick="next()">Aww okay 🥹</button>
-    </div>
+<div class="card">
+<h1>Quick Reminder 😌</h1>
+<p>You are mine forever ❤️</p>
+<button onclick="next()">Aww okay 🥹</button>
+</div>
 </div>
 
-<!-- 4 -->
 <div class="section" id="s4">
-    <div class="card">
-        <h1>Fake Chat 📱</h1>
-        <div class="chat">
-            <p>Gudda: I miss you 🥺</p>
-            <p class="Milan">Milan: I miss you more 🥹</p>
-            <p>Kuchu Puchu: Come fast 😤</p>
-            <p class="Milan">Milan: On my way to your heart ❤️</p>
-        </div>
-        <button onclick="next()">Cute but ok 🙄</button>
-    </div>
+<div class="card">
+<h1>Fake Chat 📱</h1>
+<div class="chat">
+<p>Gudda: I miss you 🥺</p>
+<p>Milan: I miss you more 🥹</p>
+<p>Kuchu Puchu: Come fast 😤</p>
+<p>Milan: On my way to your heart ❤️</p>
+</div>
+<button onclick="next()">Cute 🙄</button>
+</div>
 </div>
 
-<!-- 5 -->
 <div class="section" id="s5">
-    <div class="card">
-        <h1>Who is more… 🤔</h1>
-        <div class="options">
-            <button onclick="next()">More cute (You)</button>
-            <button onclick="next()">More obsessed (Me)</button>
-            <button onclick="next()">More annoying (Both)</button>
-        </div>
-    </div>
+<div class="card">
+
+<p class="love-quote">
+They say people don’t put effort into relationships anymore.<br>
+But they’ve never seen what people in love actually look like. ❤️
+</p>
+
+<div class="heart-collage">
+
+<div class="hide"></div>
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<div class="hide"></div>
+
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+
+<div class="hide"></div>
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<div class="hide"></div>
+
 </div>
 
-<!-- 6 -->
+<p style="margin-top:15px;">Proof that love looks like this 💕</p>
+<button onclick="next()">Awww 🥹</button>
+
+</div>
+</div>
+
 <div class="section" id="s6">
-    <div class="card">
-        <h1>Choose Our Date (Future) 🍿</h1>
-        <div class="options">
-            <button onclick="next()">Movie + Snacks</button>
-            <button onclick="next()">Late-night nightouts in Bangalore</button>
-            <button onclick="next()">Just us doing our stuff in the bedroom 🤤</button>
-            <button onclick="next()">All of them 😏</button>
-        </div>
-    </div>
+<div class="card">
+<h1>Who is more… 🤔</h1>
+<div class="options">
+<button onclick="next()">More cute (You)</button>
+<button onclick="next()">More obsessed (Me)</button>
+<button onclick="next()">More annoying (Both)</button>
+</div>
+</div>
 </div>
 
-<!-- 7 -->
 <div class="section" id="s7">
-    <div class="card">
-        <h1>Love Meter 💗</h1>
-        <p>
-            Love for you loading…<br><br>
-            ██████████████ 100%
-        </p>
-        <button onclick="next()">As expected 😌</button>
-    </div>
+<div class="card">
+<h1>Love Meter 💗</h1>
+<p>██████████████ 100%</p>
+<button onclick="next()">As expected 😌</button>
+</div>
 </div>
 
-<!-- 8 -->
 <div class="section" id="s8">
-    <div class="card">
-        <h1>Time Check ⏳</h1>
-        <p>
-            I’ve been falling for you for:<br><br>
-            <span id="timer"></span>
-        </p>
-        <button onclick="next()">Still counting 💕</button>
-    </div>
+<div class="card">
+<h1>Time Check ⏳</h1>
+<p><span id="timer"></span></p>
+<button onclick="next()">Still counting 💕</button>
+</div>
 </div>
 
-<!-- 9 -->
 <div class="section" id="s9">
-    <div class="card">
-        <h1>Secret 🤫</h1>
-        <p>
-            Even on bad days,<br>
-            My favorite thought is still you.
-        </p>
-        <button onclick="next()">Final Question 💘</button>
-    </div>
+<div class="card">
+<h1>Secret 🤫</h1>
+<p>You are always my favorite thought ❤️</p>
+<button onclick="next()">Final 💘</button>
+</div>
 </div>
 
-<!-- 10 -->
 <div class="section" id="s10">
-    <div class="card">
-        <h1>Hey Buttercup 💖</h1>
-        <p>Will you be my Valentine?</p>
-        <button onclick="yes()">YES 😍</button>
-        <button onmouseover="move(this)">No 🙃</button>
-    </div>
+<div class="card">
+<h1>Will you be my Valentine? 💖</h1>
+<button onclick="celebrate(event)">YES 😍</button>
+<button onmouseover="move(this)">No 🙃</button>
+</div>
 </div>
 
-<!-- 11 -->
 <div class="section" id="s11">
-    <div class="card">
-        <h1>YAYYYYYYYYY 🥹❤️</h1>
-        <p>
-            Thank you for choosing me.<br>
-            I promise to keep loving you,<br>
-            teasing you,<br>
-            and supporting you in your every decision.
-        </p>
-        <p>Happy Valentine’s Day 💌</p>
-    </div>
+<div class="card">
+<h1>YAYYYYY 🥹❤️</h1>
+<p>Happy Valentine’s Day 💌</p>
 </div>
-    
+</div>
 
 <div class="music" id="musicBtn">🎵</div>
 
 <audio id="song" loop>
-  <source src="https://raw.githubusercontent.com/parvv-10/valentines/main/say-yes-to-heaven.mp3" type="audio/mpeg">
+<source src="https://raw.githubusercontent.com/parvv-10/valentines/main/say-yes-to-heaven.mp3">
 </audio>
 
-    <script>
-const musicBtn = document.getElementById("musicBtn");
-const song = document.getElementById("song");
-
-musicBtn.onclick = () => {
-  if (song.paused) {
-    song.play();
-    musicBtn.innerText = "🔊";
-  } else {
-    song.pause();
-    musicBtn.innerText = "🎵";
-  }
-};
-
-// autoplay after first tap anywhere
-document.body.addEventListener("click", () => {
-  song.play();
-}, { once: true });
-
-</script>
-
-
- 
 <script>
 let current=1;
+
 const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
-document.getElementById("nick").innerText=nicks[Math.floor(Math.random()*nicks.length)];
+document.getElementById("nick").innerText=
+nicks[Math.floor(Math.random()*nicks.length)];
 
 function next(){
-    document.getElementById(`s${current}`).classList.remove("active");
-    current++;
-    document.getElementById(`s${current}`).classList.add("active");
+document.getElementById(`s${current}`).classList.remove("active");
+current++;
+document.getElementById(`s${current}`).classList.add("active");
 }
 
 function yes(){
-    document.getElementById("s10").classList.remove("active");
-    document.getElementById("s11").classList.add("active");
+document.getElementById("s10").classList.remove("active");
+document.getElementById("s11").classList.add("active");
 }
 
 function move(btn){
-    btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 }
 
-// timer: since Aug 11, 2025
-const start = new Date("2025-08-11T00:00:00");
-setInterval(() => {
-    const now = new Date();
-    const diff = now - start;
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor(diff / 3600000) % 24;
-    const m = Math.floor(diff / 60000) % 60;
-    document.getElementById("timer").innerText = `${d} days ${h} hrs ${m} mins`;
-}, 1000);
-    
-// hearts
+/* TIMER */
+
+const start=new Date("2025-08-11T00:00:00");
 setInterval(()=>{
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),7000);
+const diff=new Date()-start;
+const d=Math.floor(diff/86400000);
+const h=Math.floor(diff/3600000)%24;
+const m=Math.floor(diff/60000)%60;
+document.getElementById("timer").innerText=
+`${d} days ${h} hrs ${m} mins`;
+},1000);
+
+/* FLOATING HEARTS */
+
+setInterval(()=>{
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
 },300);
 
-// music
-function toggleMusic(){
-    const song=document.getElementById("song");
-    song.paused?song.play():song.pause();
+/* MUSIC */
+
+const musicBtn=document.getElementById("musicBtn");
+const song=document.getElementById("song");
+
+musicBtn.onclick=()=>{
+song.paused ? song.play() : song.pause();
+};
+
+/* CONFETTI CELEBRATION */
+
+function celebrate(e){
+createBurst(e.clientX,e.clientY);
+yes();
+}
+
+function createBurst(x,y){
+
+const container=document.createElement("div");
+container.className="burst";
+container.style.left=x+"px";
+container.style.top=y+"px";
+document.body.appendChild(container);
+
+const items=["💖","💗","✨","🎉","🌸","💕"];
+
+for(let i=0;i<30;i++){
+const span=document.createElement("span");
+span.innerHTML=items[Math.floor(Math.random()*items.length)];
+
+const angle=Math.random()*2*Math.PI;
+const distance=80+Math.random()*120;
+
+span.style.setProperty("--x",Math.cos(angle)*distance+"px");
+span.style.setProperty("--y",Math.sin(angle)*distance+"px");
+
+container.appendChild(span);
+}
+
+setTimeout(()=>container.remove(),2600);
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
