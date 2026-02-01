@@ -34,11 +34,11 @@ animation:fade 1.2s ease;
 .card{
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
-padding:30px;
-border-radius:20px;
-max-width:480px;
+padding:32px;
+border-radius:22px;
+max-width:540px;
 margin:auto;
-box-shadow:0 20px 40px rgba(0,0,0,0.25);
+box-shadow:0 20px 40px rgba(0,0,0,.25);
 }
 
 h1{font-size:2.2em;margin-bottom:15px;}
@@ -46,7 +46,7 @@ p{font-size:1.1em;line-height:1.6;}
 
 button{
 margin-top:18px;
-padding:12px 26px;
+padding:13px 30px;
 border-radius:30px;
 border:none;
 background:white;
@@ -57,11 +57,6 @@ transition:.3s;
 
 button:hover{transform:scale(1.1);}
 
-.options button{
-width:100%;
-margin:8px 0;
-}
-
 .chat{text-align:left;}
 .chat p{
 background:rgba(255,255,255,.2);
@@ -70,36 +65,38 @@ border-radius:12px;
 margin:8px 0;
 }
 
+/* HEART COLLAGE */
+
+.heart-collage{
+display:grid;
+grid-template-columns:repeat(5,90px);
+gap:12px;
+justify-content:center;
+margin-top:15px;
+}
+
+.heart-collage img{
+width:90px;
+height:90px;
+object-fit:cover;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,.35);
+transition:.3s;
+}
+
+.heart-collage img:hover{
+transform:scale(1.08);
+}
+
+.empty{visibility:hidden;}
+
+/* FLOAT HEARTS */
+
 .heart{
 position:fixed;
 font-size:20px;
 animation:float 6s linear infinite;
 }
-
-/* QUOTE + COLLAGE */
-
-.love-quote{
-font-size:1.4em;
-margin-bottom:25px;
-font-style:italic;
-}
-
-.heart-collage{
-display:grid;
-grid-template-columns:repeat(5,70px);
-gap:8px;
-justify-content:center;
-}
-
-.heart-collage img{
-width:70px;
-height:70px;
-object-fit:cover;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.3);
-}
-
-.hide{visibility:hidden;}
 
 /* MUSIC */
 
@@ -131,15 +128,14 @@ z-index:1000;
 position:absolute;
 font-size:18px;
 animation:burstFly 2.5s ease-out forwards;
-opacity:0.9;
-}
-
-@keyframes burstFly{
-0%{transform:translate(0,0) scale(1);opacity:1;}
-100%{transform:translate(var(--x),var(--y)) scale(0.6);opacity:0;}
 }
 
 /* ANIMATIONS */
+
+@keyframes burstFly{
+from{transform:translate(0,0) scale(1);opacity:1;}
+to{transform:translate(var(--x),var(--y)) scale(.6);opacity:0;}
+}
 
 @keyframes float{
 from{transform:translateY(100vh);opacity:1;}
@@ -155,40 +151,31 @@ to{opacity:1;transform:scale(1);}
 
 @media(max-width:768px){
 
-.card{padding:22px;max-width:95%;}
+.card{max-width:95%;padding:24px;}
+
 h1{font-size:1.8em;}
 p{font-size:1em;}
 
-.love-quote{font-size:1.15em;}
-
 .heart-collage{
-grid-template-columns:repeat(5,55px);
-gap:6px;
+grid-template-columns:repeat(5,72px);
+gap:9px;
 }
 
 .heart-collage img{
-width:55px;
-height:55px;
-}
-
-.music{
-width:45px;
-height:45px;
+width:72px;
+height:72px;
 }
 }
 
 @media(max-width:420px){
 
-h1{font-size:1.6em;}
-.love-quote{font-size:1.05em;}
-
 .heart-collage{
-grid-template-columns:repeat(5,48px);
+grid-template-columns:repeat(5,64px);
 }
 
 .heart-collage img{
-width:48px;
-height:48px;
+width:64px;
+height:64px;
 }
 }
 </style>
@@ -199,122 +186,101 @@ height:48px;
 <div class="section active" id="s1">
 <div class="card">
 <h1>Hieeeee Aradhya ❤️</h1>
-<p>This website is officially dedicated to<br>My Favorite Human.</p>
+<p>This little site is just for you 💕</p>
 <button onclick="next()">Enter 😌</button>
 </div>
 </div>
 
 <div class="section" id="s2">
 <div class="card">
-<h1>Hey <span id="nick"></span> 💕</h1>
-<p>Welcome to your special place ❤️</p>
+<h1>Welcome ❤️</h1>
+<p>Your surprise begins here</p>
 <button onclick="next()">Continue 🥹</button>
 </div>
 </div>
 
 <div class="section" id="s3">
 <div class="card">
-<h1>Quick Reminder 😌</h1>
-<p>You are mine forever ❤️</p>
-<button onclick="next()">Aww okay 🥹</button>
+<h1>Reminder 😌</h1>
+<p>You’re really special to me ❤️</p>
+<button onclick="next()">Aww 🥹</button>
 </div>
 </div>
 
 <div class="section" id="s4">
 <div class="card">
-<h1>Fake Chat 📱</h1>
+<h1>Mini Chat 💬</h1>
 <div class="chat">
-<p>Gudda: I miss you 🥺</p>
-<p>Milan: I miss you more 🥹</p>
-<p>Kuchu Puchu: Come fast 😤</p>
-<p>Milan: On my way to your heart ❤️</p>
+<p>Gudda: Miss you 🥺</p>
+<p>Milan: Always ❤️</p>
+<p>Kuchu: Come fast 😤</p>
+<p>Milan: On my way 💕</p>
 </div>
 <button onclick="next()">Cute 🙄</button>
 </div>
 </div>
 
+<!-- HEART COLLAGE -->
+
 <div class="section" id="s5">
 <div class="card">
 
-<p class="love-quote">
-They say people don’t put effort into relationships anymore.<br>
-But they’ve never seen what people in love actually look like. ❤️
+<p style="font-size:1.4em;margin-bottom:18px;">
+Our Heart of Memories ❤️
 </p>
 
 <div class="heart-collage">
 
-<div class="hide"></div>
+<div class="empty"></div>
 <img src="photo1.jpg">
 <img src="photo2.jpg">
-<img src="photo3.jpg">
-<div class="hide"></div>
+<div class="empty"></div>
+<div class="empty"></div>
 
-<img src="photo2.jpg">
 <img src="photo3.jpg">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+<div class="empty"></div>
 
-<div class="hide"></div>
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<div class="hide"></div>
+<img src="photo7.jpg">
+<img src="photo8.jpg">
+<img src="photo9.jpg">
+<img src="photo10.jpg">
+<img src="photo11.jpg">
+
+<div class="empty"></div>
+<img src="photo12.jpg">
+<img src="photo13.jpg">
+<div class="empty"></div>
+<div class="empty"></div>
 
 </div>
 
-<p style="margin-top:15px;">Proof that love looks like this 💕</p>
-<button onclick="next()">Awww 🥹</button>
+<button onclick="next()">So cute 🥹</button>
 
 </div>
 </div>
 
 <div class="section" id="s6">
 <div class="card">
-<h1>Who is more… 🤔</h1>
-<div class="options">
-<button onclick="next()">More cute (You)</button>
-<button onclick="next()">More obsessed (Me)</button>
-<button onclick="next()">More annoying (Both)</button>
-</div>
+<h1>Love Meter 💗</h1>
+<p>██████████████ 100%</p>
+<button onclick="next()">Perfect 😌</button>
 </div>
 </div>
 
 <div class="section" id="s7">
 <div class="card">
-<h1>Love Meter 💗</h1>
-<p>██████████████ 100%</p>
-<button onclick="next()">As expected 😌</button>
-</div>
-</div>
-
-<div class="section" id="s8">
-<div class="card">
-<h1>Time Check ⏳</h1>
-<p><span id="timer"></span></p>
-<button onclick="next()">Still counting 💕</button>
-</div>
-</div>
-
-<div class="section" id="s9">
-<div class="card">
-<h1>Secret 🤫</h1>
-<p>You are always my favorite thought ❤️</p>
-<button onclick="next()">Final 💘</button>
-</div>
-</div>
-
-<div class="section" id="s10">
-<div class="card">
-<h1>Will you be my Valentine? 💖</h1>
+<h1>Final Question 💖</h1>
 <button onclick="celebrate(event)">YES 😍</button>
 <button onmouseover="move(this)">No 🙃</button>
 </div>
 </div>
 
-<div class="section" id="s11">
+<div class="section" id="s8">
 <div class="card">
-<h1>YAYYYYY 🥹❤️</h1>
+<h1>YAYYYY 🥹❤️</h1>
 <p>Happy Valentine’s Day 💌</p>
 </div>
 </div>
@@ -328,38 +294,17 @@ But they’ve never seen what people in love actually look like. ❤️
 <script>
 let current=1;
 
-const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
-document.getElementById("nick").innerText=
-nicks[Math.floor(Math.random()*nicks.length)];
-
 function next(){
 document.getElementById(`s${current}`).classList.remove("active");
 current++;
 document.getElementById(`s${current}`).classList.add("active");
 }
 
-function yes(){
-document.getElementById("s10").classList.remove("active");
-document.getElementById("s11").classList.add("active");
-}
-
 function move(btn){
-btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+btn.style.transform=`translate(${Math.random()*180-90}px,${Math.random()*180-90}px)`;
 }
 
-/* TIMER */
-
-const start=new Date("2025-08-11T00:00:00");
-setInterval(()=>{
-const diff=new Date()-start;
-const d=Math.floor(diff/86400000);
-const h=Math.floor(diff/3600000)%24;
-const m=Math.floor(diff/60000)%60;
-document.getElementById("timer").innerText=
-`${d} days ${h} hrs ${m} mins`;
-},1000);
-
-/* FLOATING HEARTS */
+/* FLOAT HEARTS */
 
 setInterval(()=>{
 const h=document.createElement("div");
@@ -379,11 +324,11 @@ musicBtn.onclick=()=>{
 song.paused ? song.play() : song.pause();
 };
 
-/* CONFETTI CELEBRATION */
+/* CONFETTI + HEART BURST */
 
 function celebrate(e){
 createBurst(e.clientX,e.clientY);
-yes();
+next();
 }
 
 function createBurst(x,y){
@@ -394,14 +339,14 @@ container.style.left=x+"px";
 container.style.top=y+"px";
 document.body.appendChild(container);
 
-const items=["💖","💗","✨","🎉","🌸","💕"];
+const items=["💖","💕","✨","🎉","🌸","💗"];
 
 for(let i=0;i<30;i++){
 const span=document.createElement("span");
 span.innerHTML=items[Math.floor(Math.random()*items.length)];
 
 const angle=Math.random()*2*Math.PI;
-const distance=80+Math.random()*120;
+const distance=90+Math.random()*120;
 
 span.style.setProperty("--x",Math.cos(angle)*distance+"px");
 span.style.setProperty("--y",Math.sin(angle)*distance+"px");
