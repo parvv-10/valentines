@@ -184,7 +184,6 @@ button:active{
             Let’s settle this once and for all 😌<br>
             Be honest… or don’t 🙃
         </p>
-
         <div class="options">
             <button onclick="next()">More cute 🥹 (You)</button>
             <button onclick="next()">More obsessed 😤 (Me)</button>
@@ -196,10 +195,6 @@ button:active{
             <button onclick="next()">Gets jealous easily 😏 (Me)</button>
             <button onclick="next()">Actually in love ❤️ (Both)</button>
         </div>
-
-        <p style="margin-top:18px;font-size:.9em;opacity:.85;">
-            *Warning: Choosing wrong answers may result in extra cuddles* 🤭
-        </p>
     </div>
 </div>
 
@@ -290,12 +285,19 @@ const accepted=localStorage.getItem("valentineAccepted");
 
 /* FLOW */
 let current=1;
+const sections=document.querySelectorAll(".section");
 const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
 document.getElementById("nick").innerText=nicks[Math.floor(Math.random()*nicks.length)];
 
+/* FIX #1 + #2 */
 function next(){
     document.getElementById(`s${current}`).classList.remove("active");
     current++;
+
+    if(current > sections.length){
+        current = 1;
+    }
+
     document.getElementById(`s${current}`).classList.add("active");
 }
 
@@ -309,6 +311,15 @@ if(accepted==="yes"){
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
     document.getElementById("s11").classList.add("active");
 }
+
+/* FIX #3 */
+window.onload=()=>{
+    if(!accepted){
+        document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+        current=1;
+        document.getElementById("s1").classList.add("active");
+    }
+};
 
 function move(btn){
     btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
