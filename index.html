@@ -39,6 +39,11 @@ body{
     max-width:480px;
     margin:auto;
     box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    transition:transform .3s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
 }
 
 h1{
@@ -65,6 +70,11 @@ button{
 
 button:hover{
     transform:scale(1.1);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+button:active{
+    transform:scale(.95);
 }
 
 .options button{
@@ -126,10 +136,7 @@ button:hover{
 <div class="section active" id="s1">
     <div class="card">
         <h1>Hieeeee Aradhya ❤️</h1>
-        <p>
-            This website is officially dedicated to<br>
-            My Favorite Human.
-        </p>
+        <p>This website is officially dedicated to<br>My Favorite Human.</p>
         <button onclick="next()">Enter 😌</button>
     </div>
 </div>
@@ -155,7 +162,6 @@ button:hover{
             You are Mine,<br>
             And I am keeping you forever,<br>
             No matter how hard the situations get.
-            
         </p>
         <button onclick="next()">Aww okay 🥹</button>
     </div>
@@ -165,15 +171,7 @@ button:hover{
 <div class="section" id="s4">
     <div class="card">
         <h1>Fake Chat 📱</h1>
-       <div class="chat">
-    <p>Gudda: Did you eat? 😤</p>
-    <p class="me">Milan: Only if you promise to scold me later 🥺</p>
-    <p>Gudda: You’re impossible 🙄</p>
-    <p class="me">Milan: But I’m *your* impossible ❤️</p>
-    <p>Gudda: Hmm… fine. I miss you.</p>
-    <p class="me">Milan: Miss you more. Always.</p>
-</div>
-
+        <div class="chat" id="chatBox"></div>
         <button onclick="next()">Cute but ok 🙄</button>
     </div>
 </div>
@@ -222,10 +220,7 @@ button:hover{
 <div class="section" id="s7">
     <div class="card">
         <h1>Love Meter 💗</h1>
-        <p>
-            Love for you loading…<br><br>
-            ██████████████ 100%
-        </p>
+        <p>Love for you loading…<br><br>██████████████ 100%</p>
         <button onclick="next()">As expected 😌</button>
     </div>
 </div>
@@ -234,10 +229,7 @@ button:hover{
 <div class="section" id="s8">
     <div class="card">
         <h1>Time Check ⏳</h1>
-        <p>
-            I’ve been falling for you for:<br><br>
-            <span id="timer"></span>
-        </p>
+        <p>I’ve been falling for you for:<br><br><span id="timer"></span></p>
         <button onclick="next()">Still counting 💕</button>
     </div>
 </div>
@@ -246,10 +238,7 @@ button:hover{
 <div class="section" id="s9">
     <div class="card">
         <h1>Secret 🤫</h1>
-        <p>
-            Even on bad days,<br>
-            My favorite thought is still you.
-        </p>
+        <p>Even on bad days,<br>My favorite thought is still you.</p>
         <button onclick="next()">Final Question 💘</button>
     </div>
 </div>
@@ -277,7 +266,6 @@ button:hover{
         <p>Happy Valentine’s Day 💌</p>
     </div>
 </div>
-    
 
 <div class="music" id="musicBtn">🎵</div>
 
@@ -285,30 +273,22 @@ button:hover{
   <source src="https://raw.githubusercontent.com/parvv-10/valentines/main/say-yes-to-heaven.mp3" type="audio/mpeg">
 </audio>
 
-    <script>
-const musicBtn = document.getElementById("musicBtn");
-const song = document.getElementById("song");
+<script>
+/* MUSIC */
+const musicBtn=document.getElementById("musicBtn");
+const song=document.getElementById("song");
 
-musicBtn.onclick = () => {
-  if (song.paused) {
-    song.play();
-    musicBtn.innerText = "🔊";
-  } else {
-    song.pause();
-    musicBtn.innerText = "🎵";
-  }
+musicBtn.onclick=()=>{
+  song.paused?song.play():song.pause();
+  musicBtn.innerText=song.paused?"🎵":"🔊";
 };
 
-// autoplay after first tap anywhere
-document.body.addEventListener("click", () => {
-  song.play();
-}, { once: true });
+document.body.addEventListener("click",()=>song.play(),{once:true});
 
-</script>
+/* MEMORY */
+const accepted=localStorage.getItem("valentineAccepted");
 
-
- 
-<script>
+/* FLOW */
 let current=1;
 const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
 document.getElementById("nick").innerText=nicks[Math.floor(Math.random()*nicks.length)];
@@ -320,7 +300,13 @@ function next(){
 }
 
 function yes(){
+    localStorage.setItem("valentineAccepted","yes");
     document.getElementById("s10").classList.remove("active");
+    document.getElementById("s11").classList.add("active");
+}
+
+if(accepted==="yes"){
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
     document.getElementById("s11").classList.add("active");
 }
 
@@ -328,18 +314,15 @@ function move(btn){
     btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 }
 
-// timer: since Aug 11, 2025
-const start = new Date("2025-08-11T00:00:00");
-setInterval(() => {
-    const now = new Date();
-    const diff = now - start;
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor(diff / 3600000) % 24;
-    const m = Math.floor(diff / 60000) % 60;
-    document.getElementById("timer").innerText = `${d} days ${h} hrs ${m} mins`;
-}, 1000);
-    
-// hearts
+/* TIMER */
+const start=new Date("2025-08-11T00:00:00");
+setInterval(()=>{
+    const diff=new Date()-start;
+    document.getElementById("timer").innerText=
+    `${Math.floor(diff/86400000)} days ${Math.floor(diff/3600000)%24} hrs ${Math.floor(diff/60000)%60} mins`;
+},1000);
+
+/* HEARTS */
 setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
@@ -349,20 +332,36 @@ setInterval(()=>{
     setTimeout(()=>h.remove(),7000);
 },300);
 
-// music
-function toggleMusic(){
-    const song=document.getElementById("song");
-    song.paused?song.play():song.pause();
-}
+/* DYNAMIC CHAT */
+const chats=[
+    "Gudda: Did you eat? 😤",
+    "Milan: Only if you promise to scold me later 🥺",
+    "Gudda: You’re impossible 🙄",
+    "Milan: But I’m your impossible ❤️",
+    "Gudda: Hmm… fine. I miss you.",
+    "Milan: Miss you more. Always."
+];
+
+let chatIndex=0;
+const chatBox=document.getElementById("chatBox");
+
+const observer=new MutationObserver(()=>{
+    if(document.getElementById("s4").classList.contains("active")){
+        chatBox.innerHTML="";
+        chatIndex=0;
+        (function load(){
+            if(chatIndex<chats.length){
+                const p=document.createElement("p");
+                if(chats[chatIndex].startsWith("Milan")) p.classList.add("me");
+                p.innerText=chats[chatIndex++];
+                chatBox.appendChild(p);
+                setTimeout(load,900);
+            }
+        })();
+    }
+});
+observer.observe(document.getElementById("s4"),{attributes:true});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
