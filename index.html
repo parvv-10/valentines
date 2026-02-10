@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>For You ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
 <style>
 *{
@@ -42,19 +42,11 @@ body{
     transition:transform .3s ease;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-}
+.card:hover{ transform:translateY(-6px); }
 
-h1{
-    font-size:2.2em;
-    margin-bottom:15px;
-}
+h1{ font-size:2.2em; margin-bottom:15px; }
 
-p{
-    font-size:1.1em;
-    line-height:1.6;
-}
+p{ font-size:1.1em; line-height:1.6; }
 
 button{
     margin-top:18px;
@@ -73,19 +65,11 @@ button:hover{
     box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-button:active{
-    transform:scale(.95);
-}
+button:active{ transform:scale(.95); }
 
-.options button{
-    width:100%;
-    margin:8px 0;
-}
+.options button{ width:100%; margin:8px 0; }
 
-.chat{
-    text-align:left;
-    font-size:.95em;
-}
+.chat{ text-align:left; font-size:.95em; }
 
 .chat p{
     background:rgba(255,255,255,.2);
@@ -132,7 +116,6 @@ button:active{
 
 <body>
 
-<!-- 1 -->
 <div class="section active" id="s1">
     <div class="card">
         <h1>Hieeeee Aradhya ❤️</h1>
@@ -141,7 +124,6 @@ button:active{
     </div>
 </div>
 
-<!-- 2 -->
 <div class="section" id="s2">
     <div class="card">
         <h1>Hey <span id="nick"></span> 💕</h1>
@@ -154,7 +136,6 @@ button:active{
     </div>
 </div>
 
-<!-- 3 -->
 <div class="section" id="s3">
     <div class="card">
         <h1>Quick Reminder 😌</h1>
@@ -167,7 +148,6 @@ button:active{
     </div>
 </div>
 
-<!-- 4 -->
 <div class="section" id="s4">
     <div class="card">
         <h1>Fake Chat 📱</h1>
@@ -176,7 +156,6 @@ button:active{
     </div>
 </div>
 
-<!-- 5 -->
 <div class="section" id="s5">
     <div class="card">
         <h1>Who is more… 🤔💭</h1>
@@ -198,7 +177,6 @@ button:active{
     </div>
 </div>
 
-<!-- 6 -->
 <div class="section" id="s6">
     <div class="card">
         <h1>Choose Our Date (Future) 🍿</h1>
@@ -211,7 +189,6 @@ button:active{
     </div>
 </div>
 
-<!-- 7 -->
 <div class="section" id="s7">
     <div class="card">
         <h1>Love Meter 💗</h1>
@@ -220,7 +197,6 @@ button:active{
     </div>
 </div>
 
-<!-- 8 -->
 <div class="section" id="s8">
     <div class="card">
         <h1>Time Check ⏳</h1>
@@ -229,7 +205,6 @@ button:active{
     </div>
 </div>
 
-<!-- 9 -->
 <div class="section" id="s9">
     <div class="card">
         <h1>Secret 🤫</h1>
@@ -238,7 +213,6 @@ button:active{
     </div>
 </div>
 
-<!-- 10 -->
 <div class="section" id="s10">
     <div class="card">
         <h1>Hey Buttercup 💖</h1>
@@ -248,7 +222,6 @@ button:active{
     </div>
 </div>
 
-<!-- 11 -->
 <div class="section" id="s11">
     <div class="card">
         <h1>YAYYYYYYYYY 🥹❤️</h1>
@@ -259,6 +232,7 @@ button:active{
             and supporting you in your every decision.
         </p>
         <p>Happy Valentine’s Day 💌</p>
+        <button onclick="restart()">Replay 💫</button>
     </div>
 </div>
 
@@ -269,7 +243,6 @@ button:active{
 </audio>
 
 <script>
-/* MUSIC */
 const musicBtn=document.getElementById("musicBtn");
 const song=document.getElementById("song");
 
@@ -280,52 +253,48 @@ musicBtn.onclick=()=>{
 
 document.body.addEventListener("click",()=>song.play(),{once:true});
 
-/* MEMORY */
 const accepted=localStorage.getItem("valentineAccepted");
 
-/* FLOW */
 let current=1;
 const sections=document.querySelectorAll(".section");
 const nicks=["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
 document.getElementById("nick").innerText=nicks[Math.floor(Math.random()*nicks.length)];
 
-/* FIX #1 + #2 */
 function next(){
     document.getElementById(`s${current}`).classList.remove("active");
     current++;
-
-    if(current > sections.length){
-        current = 1;
-    }
-
+    if(current>sections.length) current=1;
     document.getElementById(`s${current}`).classList.add("active");
 }
 
 function yes(){
     localStorage.setItem("valentineAccepted","yes");
-    document.getElementById("s10").classList.remove("active");
-    document.getElementById("s11").classList.add("active");
-}
-
-if(accepted==="yes"){
+    sessionStorage.setItem("ended","true");
     document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
     document.getElementById("s11").classList.add("active");
 }
 
-/* FIX #3 */
+if(accepted==="yes" && sessionStorage.getItem("ended")){
+    sessionStorage.removeItem("ended");
+    localStorage.removeItem("valentineAccepted");
+}
+
 window.onload=()=>{
-    if(!accepted){
-        document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-        current=1;
-        document.getElementById("s1").classList.add("active");
-    }
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    current=1;
+    document.getElementById("s1").classList.add("active");
 };
+
+function restart(){
+    localStorage.removeItem("valentineAccepted");
+    sessionStorage.clear();
+    location.reload();
+}
 
 function move(btn){
     btn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 }
 
-/* TIMER */
 const start=new Date("2025-08-11T00:00:00");
 setInterval(()=>{
     const diff=new Date()-start;
@@ -333,7 +302,6 @@ setInterval(()=>{
     `${Math.floor(diff/86400000)} days ${Math.floor(diff/3600000)%24} hrs ${Math.floor(diff/60000)%60} mins`;
 },1000);
 
-/* HEARTS */
 setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
@@ -343,7 +311,6 @@ setInterval(()=>{
     setTimeout(()=>h.remove(),7000);
 },300);
 
-/* DYNAMIC CHAT */
 const chats=[
     "Gudda: Did you eat? 😤",
     "Milan: Only if you promise to scold me later 🥺",
