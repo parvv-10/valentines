@@ -19,16 +19,6 @@ body{
     overflow-x:hidden;
 }
 
-/* FIXED: vignette no longer blocks clicks */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:radial-gradient(circle at center,transparent 40%,rgba(0,0,0,0.4));
-    pointer-events:none;   /* important */
-    z-index:0;
-}
-
 .section{
     min-height:100vh;
     display:none;
@@ -50,32 +40,9 @@ body::before{
     margin:auto;
     box-shadow:0 20px 40px rgba(0,0,0,0.25);
     transition:transform .3s ease;
-    position:relative;
-    overflow:hidden;
-    z-index:1; /* FIXED: ensures above vignette */
 }
 
-/* shimmer */
-.card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255,255,255,0.35) 50%,
-        transparent 100%
-    );
-    animation:luxGlow 4s infinite;
-}
-
-@keyframes luxGlow{
-    0%{ left:-100%; }
-    100%{ left:200%; }
-}
+.card:hover{ transform:translateY(-6px); }
 
 h1{ font-size:2.2em; margin-bottom:15px; }
 
@@ -86,20 +53,16 @@ button{
     padding:12px 26px;
     border-radius:30px;
     border:none;
-    background:linear-gradient(45deg,#ffffff,#ffe6ec);
+    background:white;
     color:#ff4d6d;
     font-size:1em;
     cursor:pointer;
     transition:.3s;
-    position:relative;
-    z-index:2; /* FIXED: clickable */
 }
 
 button:hover{
     transform:scale(1.1);
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.25),
-        0 0 20px rgba(255,255,255,0.4);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 button:active{ transform:scale(.95); }
@@ -117,6 +80,12 @@ button:active{ transform:scale(.95); }
 
 .me{text-align:right;}
 
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
 .music{
     position:fixed;
     bottom:20px;
@@ -131,14 +100,11 @@ button:active{ transform:scale(.95); }
     justify-content:center;
     cursor:pointer;
     font-size:20px;
-    box-shadow:0 0 20px rgba(255,255,255,.5);
-    animation:pulse 2s infinite;
-    z-index:3; /* FIXED */
 }
 
-@keyframes pulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.08);}
+@keyframes float{
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
 }
 
 @keyframes fade{
@@ -150,7 +116,6 @@ button:active{ transform:scale(.95); }
 
 <body>
 
-<!-- YOUR ORIGINAL HTML SECTIONS REMAIN EXACTLY SAME -->
 <div class="section active" id="s1">
     <div class="card">
         <h1>Hieeeee Aradhya ❤️</h1>
@@ -159,67 +124,296 @@ button:active{ transform:scale(.95); }
     </div>
 </div>
 
-<!-- keep all your other sections exactly as they were -->
+<div class="section" id="s2">
+    <div class="card">
+        <h1>Hey <span id="nick"></span> 💕</h1>
+        <p>
+            Welcome To a Place Where<br>
+            You are loved, Admired,<br>
+            and Slightly Spoiled.
+        </p>
+        <button onclick="next()">Continue 🥹</button>
+    </div>
+</div>
+
+<div class="section" id="s3">
+    <div class="card">
+        <h1>Quick Reminder 😌</h1>
+        <p>
+            You are Mine,<br>
+            And I am keeping you forever,<br>
+            No matter how hard the situations get.
+        </p>
+        <button onclick="next()">Aww okay 🥹</button>
+    </div>
+</div>
+
+<div class="section" id="s4">
+    <div class="card">
+        <h1>Fake Chat 📱</h1>
+        <div class="chat" id="chatBox"></div>
+        <button onclick="next()">Cute but ok 🙄</button>
+    </div>
+</div>
+
+<div class="section" id="s5">
+    <div class="card">
+        <h1>Who is more… 🤔💭</h1>
+        <p style="margin-bottom:15px;">
+            Let’s settle this once and for all 😌<br>
+            Be honest… or don’t 🙃
+        </p>
+        <div class="options">
+            <button onclick="next()">More cute 🥹 (You)</button>
+            <button onclick="next()">More obsessed 😤 (Me)</button>
+            <button onclick="next()">More dramatic 🎭 (You)</button>
+            <button onclick="next()">More annoying 😒 (Both)</button>
+            <button onclick="next()">Falls first 💘 (Me)</button>
+            <button onclick="next()">Falls harder 😌 (You)</button>
+            <button onclick="next()">Overthinks everything 🤯 (You)</button>
+            <button onclick="next()">Gets jealous easily 😏 (Me)</button>
+            <button onclick="next()">Actually in love ❤️ (Both)</button>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="s6">
+    <div class="card">
+        <h1>Choose Our Date (Future) 🍿</h1>
+        <div class="options">
+            <button onclick="next()">Movie + Snacks</button>
+            <button onclick="next()">Late-night nightouts in Bangalore</button>
+            <button onclick="next()">Just us doing our stuff in the bedroom 🤤</button>
+            <button onclick="next()">All of them 😏</button>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="s7">
+    <div class="card">
+        <h1>Love Meter 💗</h1>
+        <p>Love for you loading…<br><br>██████████████ 100%</p>
+        <button onclick="next()">As expected 😌</button>
+    </div>
+</div>
+
+<div class="section" id="s8">
+    <div class="card">
+        <h1>Time Check ⏳</h1>
+        <p>I’ve been falling for you for:<br><br><span id="timer"></span></p>
+        <button onclick="next()">Still counting 💕</button>
+    </div>
+</div>
+
+<div class="section" id="s9">
+    <div class="card">
+        <h1>Secret 🤫</h1>
+        <p>Even on bad days,<br>My favorite thought is still you.</p>
+        <button onclick="next()">Final Question 💘</button>
+    </div>
+</div>
+
+<div class="section" id="s10">
+    <div class="card">
+        <h1>Hey Buttercup 💖</h1>
+        <p>Will you be my Valentine?</p>
+        <button onclick="yes()">YES 😍</button>
+        <button onmouseover="move(this)">No 🙃</button>
+    </div>
+</div>
+
+<div class="section" id="s11">
+    <div class="card">
+        <h1>YAYYYYYYYYY 🥹❤️</h1>
+        <p>
+            Thank you for choosing me.<br>
+            I promise to keep loving you,<br>
+            teasing you,<br>
+            and supporting you in your every decision.
+        </p>
+        <p>Happy Valentine’s Day 💌</p>
+        <button onclick="restart()">Replay 💫</button>
+    </div>
+</div>
 
 <div class="music" id="musicBtn">🎵</div>
 
 <audio id="song" loop>
-  <source src="https://raw.githubusercontent.com/parvv-10/valentines/main/say-yes-to-heaven.mp3" type="audio/mpeg">
+  <source src="say-yes-to-heaven.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* ===== ORIGINAL NAVIGATION (unchanged) ===== */
 let current = 1;
 
-function next(){
-    document.getElementById("s"+current).classList.remove("active");
-    current++;
-    const nextSection=document.getElementById("s"+current);
-    if(nextSection){
-        nextSection.classList.add("active");
-    }
-}
+const sections = document.querySelectorAll(".section");
 
-/* ===== MUSIC FIX ===== */
-const musicBtn=document.getElementById("musicBtn");
-const song=document.getElementById("song");
+const musicBtn = document.getElementById("musicBtn");
+const song = document.getElementById("song");
 
-musicBtn.addEventListener("click",()=>{
+musicBtn.onclick = function(){
     if(song.paused){
-        song.play().catch(()=>{}); /* FIXED autoplay handling */
-        musicBtn.innerHTML="⏸";
+        song.play();
+        musicBtn.innerText="🔊";
     }else{
         song.pause();
-        musicBtn.innerHTML="🎵";
+        musicBtn.innerText="🎵";
     }
-});
-
-/* ===== SAFE CINEMATIC TILT (FIXED) ===== */
-document.addEventListener("mousemove",e=>{
-
-    const x=(e.clientX/window.innerWidth-.5)*6;
-    const y=(e.clientY/window.innerHeight-.5)*6;
-
-    document.querySelectorAll(".card").forEach(card=>{
-        card.style.transform=
-        `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
-    });
-
-});
-
-document.addEventListener("mouseleave",()=>{
-    document.querySelectorAll(".card").forEach(card=>{
-        card.style.transform="";
-    });
-});
-
-/* ===== SAFE LOAD RESET ===== */
-window.onload=()=>{
-    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-    current=1;
-    document.getElementById("s1").classList.add("active");
 };
+
+document.body.addEventListener("click",function(){
+    song.play().catch(()=>{});
+},{once:true});
+
+
+function next(){
+
+    document.getElementById("s"+current).classList.remove("active");
+
+    current++;
+
+    if(current > sections.length){
+        current = sections.length;
+    }
+
+    document.getElementById("s"+current).classList.add("active");
+
+}
+
+
+function yes(){
+
+    document.querySelectorAll(".section").forEach(function(s){
+        s.classList.remove("active");
+    });
+
+    document.getElementById("s11").classList.add("active");
+
+}
+
+
+function restart(){
+
+    current = 1;
+
+    document.querySelectorAll(".section").forEach(function(s){
+        s.classList.remove("active");
+    });
+
+    document.getElementById("s1").classList.add("active");
+
+}
+
+
+function move(btn){
+
+    btn.style.transform =
+    "translate("+(Math.random()*200-100)+"px,"+(Math.random()*200-100)+"px)";
+
+}
+
+
+const nicks = ["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
+
+document.getElementById("nick").innerText =
+nicks[Math.floor(Math.random()*nicks.length)];
+
+
+const start = new Date("2025-08-11T00:00:00");
+
+setInterval(function(){
+
+    const diff = new Date() - start;
+
+    const days = Math.floor(diff/86400000);
+
+    const hrs = Math.floor(diff/3600000)%24;
+
+    const mins = Math.floor(diff/60000)%60;
+
+    document.getElementById("timer").innerText =
+    days+" days "+hrs+" hrs "+mins+" mins";
+
+},1000);
+
+
+setInterval(function(){
+
+    const h = document.createElement("div");
+
+    h.className="heart";
+
+    h.innerHTML="❤️";
+
+    h.style.left = Math.random()*100+"vw";
+
+    document.body.appendChild(h);
+
+    setTimeout(function(){
+        h.remove();
+    },6000);
+
+},300);
+
+
+const chats=[
+"Gudda: Did you eat? 😤",
+"Milan: Only if you promise to scold me later 🥺",
+"Gudda: You’re impossible 🙄",
+"Milan: But I’m your impossible ❤️",
+"Gudda: Hmm… fine. I miss you.",
+"Milan: Miss you more. Always."
+];
+
+
+let chatIndex=0;
+
+const chatBox=document.getElementById("chatBox");
+
+
+function loadChat(){
+
+    chatBox.innerHTML="";
+
+    chatIndex=0;
+
+    function show(){
+
+        if(chatIndex<chats.length){
+
+            const p=document.createElement("p");
+
+            if(chats[chatIndex].startsWith("Milan")){
+                p.classList.add("me");
+            }
+
+            p.innerText=chats[chatIndex];
+
+            chatBox.appendChild(p);
+
+            chatIndex++;
+
+            setTimeout(show,900);
+
+        }
+
+    }
+
+    show();
+
+}
+
+
+const observer = new MutationObserver(function(){
+
+    if(document.getElementById("s4").classList.contains("active")){
+        loadChat();
+    }
+
+});
+
+observer.observe(document.getElementById("s4"),{attributes:true});
+
 
 </script>
 
