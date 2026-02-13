@@ -101,6 +101,49 @@ button:active{ transform:scale(.95); }
     cursor:pointer;
     font-size:20px;
 }
+    /* 📸 Polaroid Stack Section */
+
+.polaroid-wrapper{
+    position:relative;
+    width:100%;
+    max-width:600px;
+    height:400px;
+    margin:40px auto 20px;
+}
+
+.polaroid{
+    position:absolute;
+    width:180px;
+    background:white;
+    padding:10px 10px 25px 10px;
+    border-radius:8px;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+    transition:all .4s ease;
+    cursor:pointer;
+}
+
+.polaroid img{
+    width:100%;
+    border-radius:6px;
+}
+
+.polaroid:nth-child(odd){
+    transform:rotate(-6deg);
+}
+
+.polaroid:nth-child(even){
+    transform:rotate(6deg);
+}
+
+.polaroid:hover{
+    transform:rotate(0deg) scale(1.1);
+    z-index:20;
+}
+
+.polaroid-wrapper:hover .polaroid{
+    transform:rotate(0deg);
+}
+
 
 @keyframes float{
     from{transform:translateY(100vh);opacity:1;}
@@ -233,9 +276,74 @@ button:active{ transform:scale(.95); }
             and supporting you in your every decision.
         </p>
         <p>Happy Valentine’s Day 💌</p>
-        <button onclick="restart()">Replay 💫</button>
     </div>
 </div>
+    
+    <div class="section" id="s12">
+    <div class="card">
+        <h1>Our Polaroid Memories 📸🤍</h1>
+        <p>Little moments. Big feelings.</p>
+
+        <div class="polaroid-wrapper">
+
+            <div class="polaroid" style="top:10px; left:20px;">
+                <img src="photo1.jpg">
+            </div>
+
+            <div class="polaroid" style="top:60px; left:160px;">
+                <img src="photo2.jpg">
+            </div>
+
+            <div class="polaroid" style="top:120px; left:60px;">
+                <img src="photo3.jpg">
+            </div>
+
+            <div class="polaroid" style="top:30px; left:300px;">
+                <img src="photo4.jpg">
+            </div>
+
+            <div class="polaroid" style="top:180px; left:220px;">
+                <img src="photo5.jpg">
+            </div>
+
+            <div class="polaroid" style="top:220px; left:20px;">
+                <img src="photo6.jpg">
+            </div>
+
+            <div class="polaroid" style="top:250px; left:140px;">
+                <img src="photo7.jpg">
+            </div>
+
+            <div class="polaroid" style="top:150px; left:360px;">
+                <img src="photo8.jpg">
+            </div>
+
+            <div class="polaroid" style="top:80px; left:420px;">
+                <img src="photo9.jpg">
+            </div>
+
+            <div class="polaroid" style="top:260px; left:320px;">
+                <img src="photo10.jpg">
+            </div>
+
+            <div class="polaroid" style="top:300px; left:80px;">
+                <img src="photo11.jpg">
+            </div>
+
+            <div class="polaroid" style="top:330px; left:260px;">
+                <img src="photo12.jpg">
+            </div>
+
+            <div class="polaroid" style="top:350px; left:420px;">
+                <img src="photo13.jpg">
+            </div>
+
+        </div>
+
+        <button onclick="restart()">Replay Everything 💞</button>
+    </div>
+</div>
+
 
 <div class="music" id="musicBtn">🎵</div>
 
@@ -420,5 +528,6 @@ observer.observe(document.getElementById("s4"),{attributes:true});
 
 </body>
 </html>
+
 
 
