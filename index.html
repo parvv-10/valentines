@@ -101,8 +101,7 @@ button:active{ transform:scale(.95); }
     cursor:pointer;
     font-size:20px;
 }
-
-/* 📸 Polaroid Stack Section */
+    /* 📸 Polaroid Stack Section */
 
 .polaroid-wrapper{
     position:relative;
@@ -144,6 +143,7 @@ button:active{ transform:scale(.95); }
 .polaroid-wrapper:hover .polaroid{
     transform:rotate(0deg);
 }
+
 
 @keyframes float{
     from{transform:translateY(100vh);opacity:1;}
@@ -195,7 +195,7 @@ button:active{ transform:scale(.95); }
 
 <div class="section" id="s4">
     <div class="card">
-        <h1>Baat nahi karenge toh infuture aisi chats kaise hongi 📱 ?</h1>
+        <h1>Baat  nahi karenge toh infuture aisi chats kaise hongi 📱 ?</h1>
         <div class="chat" id="chatBox"></div>
         <button onclick="next()">Cute but ok 🙄</button>
     </div>
@@ -262,37 +262,268 @@ button:active{ transform:scale(.95); }
         <h1>Hey Buttercup 💖</h1>
         <p>Will you be my Valentine?</p>
         <button onclick="yes()">YES 😍</button>
-
-        <!-- FIXED MOBILE FRIENDLY NO BUTTON -->
-        <button 
-        onmouseover="move(this)"
-        ontouchstart="move(this)"
-        onclick="move(this)">
-        No 🙃
-        </button>
-
+        <button onmouseover="move(this)">No 🙃</button>
     </div>
 </div>
 
-<!-- rest unchanged -->
+<div class="section" id="s11">
+    <div class="card">
+        <h1>YAYYYYYYYYY 🥹❤️</h1>
+        <p>
+            Thank you for choosing me.<br>
+            I promise to keep loving you,<br>
+            teasing you,<br>
+            and supporting you in your every decision.
+        </p>
+        <p>Happy Valentine’s Day 💌</p>
+    </div>
+</div>
+    
+    <div class="section" id="s12">
+    <div class="card">
+        <h1>Our Polaroid Memories 📸🤍</h1>
+        <p>Little moments. Big feelings.</p>
+
+       <div class="polaroid-wrapper">
+
+<div class="polaroid" style="top:0px; left:0px;">
+<img src="photo1.jpg">
+</div>
+
+<div class="polaroid" style="top:20px; left:120px;">
+<img src="photo2.jpg">
+</div>
+
+<div class="polaroid" style="top:60px; left:40px;">
+<img src="photo3.jpg">
+</div>
+
+<div class="polaroid" style="top:90px; left:160px;">
+<img src="photo4.jpg">
+</div>
+
+<div class="polaroid" style="top:130px; left:0px;">
+<img src="photo5.jpg">
+</div>
+
+<div class="polaroid" style="top:160px; left:120px;">
+<img src="photo6.jpg">
+</div>
+
+<div class="polaroid" style="top:200px; left:40px;">
+<img src="photo7.jpg">
+</div>
+
+<div class="polaroid" style="top:230px; left:160px;">
+<img src="photo8.jpg">
+</div>
+
+<div class="polaroid" style="top:270px; left:0px;">
+<img src="photo9.jpg">
+</div>
+
+<div class="polaroid" style="top:300px; left:120px;">
+<img src="photo10.jpg">
+</div>
+
+<div class="polaroid" style="top:340px; left:40px;">
+<img src="photo11.jpg">
+</div>
+
+<div class="polaroid" style="top:370px; left:160px;">
+<img src="photo12.jpg">
+</div>
+
+<div class="polaroid" style="top:410px; left:80px;">
+<img src="photo13.jpg">
+</div>
+
+</div>
+
+
+        <button onclick="restart()">Replay Everything 💞</button>
+    </div>
+</div>
+
+
+<div class="music" id="musicBtn">🎵</div>
+
+<audio id="song" loop>
+  <source src="say-yes-to-heaven.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
-function move(btn){
+let current = 1;
 
-    const maxX = window.innerWidth - btn.offsetWidth - 20;
-    const maxY = window.innerHeight - btn.offsetHeight - 20;
+const sections = document.querySelectorAll(".section");
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+const musicBtn = document.getElementById("musicBtn");
+const song = document.getElementById("song");
 
-    btn.style.position = "fixed";
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
+musicBtn.onclick = function(){
+    if(song.paused){
+        song.play();
+        musicBtn.innerText="🔊";
+    }else{
+        song.pause();
+        musicBtn.innerText="🎵";
+    }
+};
+
+document.body.addEventListener("click",function(){
+    song.play().catch(()=>{});
+},{once:true});
+
+
+function next(){
+
+    document.getElementById("s"+current).classList.remove("active");
+
+    current++;
+
+    if(current > sections.length){
+        current = sections.length;
+    }
+
+    document.getElementById("s"+current).classList.add("active");
 
 }
 
-/* rest of your JS unchanged */
+
+function yes(){
+
+    document.querySelectorAll(".section").forEach(function(s){
+        s.classList.remove("active");
+    });
+
+    document.getElementById("s12").classList.add("active");
+
+}
+
+
+function restart(){
+
+    current = 1;
+
+    document.querySelectorAll(".section").forEach(function(s){
+        s.classList.remove("active");
+    });
+
+    document.getElementById("s1").classList.add("active");
+
+}
+
+
+function move(btn){
+
+    btn.style.transform =
+    "translate("+(Math.random()*200-100)+"px,"+(Math.random()*200-100)+"px)";
+
+}
+
+
+const nicks = ["Aruu","Kuchu Puchu","Rasmalai","Buttercup","Sweetu"];
+
+document.getElementById("nick").innerText =
+nicks[Math.floor(Math.random()*nicks.length)];
+
+
+const start = new Date("2025-08-11T00:00:00");
+
+setInterval(function(){
+
+    const diff = new Date() - start;
+
+    const days = Math.floor(diff/86400000);
+
+    const hrs = Math.floor(diff/3600000)%24;
+
+    const mins = Math.floor(diff/60000)%60;
+
+    document.getElementById("timer").innerText =
+    days+" days "+hrs+" hrs "+mins+" mins";
+
+},1000);
+
+
+setInterval(function(){
+
+    const h = document.createElement("div");
+
+    h.className="heart";
+
+    h.innerHTML="❤️";
+
+    h.style.left = Math.random()*100+"vw";
+
+    document.body.appendChild(h);
+
+    setTimeout(function(){
+        h.remove();
+    },6000);
+
+},300);
+
+
+const chats=[
+"Gudda: Did you eat? 😤",
+"Milan: Only if you promise to scold me later 🥺",
+"Gudda: You’re impossible 🙄",
+"Milan: But I’m your impossible ❤️",
+"Gudda: Hmm… fine. I miss you.",
+"Milan: Miss you more. Always."
+];
+
+
+let chatIndex=0;
+
+const chatBox=document.getElementById("chatBox");
+
+
+function loadChat(){
+
+    chatBox.innerHTML="";
+
+    chatIndex=0;
+
+    function show(){
+
+        if(chatIndex<chats.length){
+
+            const p=document.createElement("p");
+
+            if(chats[chatIndex].startsWith("Milan")){
+                p.classList.add("me");
+            }
+
+            p.innerText=chats[chatIndex];
+
+            chatBox.appendChild(p);
+
+            chatIndex++;
+
+            setTimeout(show,900);
+
+        }
+
+    }
+
+    show();
+
+}
+
+
+const observer = new MutationObserver(function(){
+
+    if(document.getElementById("s4").classList.contains("active")){
+        loadChat();
+    }
+
+});
+
+observer.observe(document.getElementById("s4"),{attributes:true});
+
 
 </script>
 
